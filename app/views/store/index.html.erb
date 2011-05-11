@@ -5,11 +5,20 @@
 <h1>Your Pragmatic Catalog</h1>
 <% @products.each do |prod| %>
 <div class="entry">
-	<%= image_tag(prod.image_url) %>
+	<%= link_to image_tag(prod.image_url, {:title => "Click to push to cart"}), 
+	 			line_items_path(:product_id => prod), :method => "post"
+	%>
 	<h3><%= prod.title%></h3>
 	<%= sanitize prod.description %>
 	<div class="price_line">
 		<span class="price"><%= number_to_currency(prod.price) %></span>
+		<%= button_to "Add to cart", line_items_path(:product_id => prod)%>
 	</div>
 </div>	
 <% end%>
+
+<% if @counter > 5 %>
+<p>
+	You have viewed: <%= pluralize @counter, "time" %>
+</p>
+<% end %>

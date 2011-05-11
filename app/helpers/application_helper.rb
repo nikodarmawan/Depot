@@ -17,4 +17,6 @@ module ApplicationHelper
     def chatty_time_and_date
       "It's " + time_24_hour + " on " + full_date
     end
+    
+    
 end
